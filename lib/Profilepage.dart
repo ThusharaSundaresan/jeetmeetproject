@@ -37,6 +37,57 @@ class MyProfilePage extends StatefulWidget {
 }
 
 class _MyProfilePageState extends State<MyProfilePage> {
+   var noticeTitle = [
+    "Programming contest",
+    "Parents meeting",
+    "College day",
+    "College election",
+    "Arts felstival"
+  ];
+  var noticeDetails = [
+    """The international collegiate Programming contest 
+    is an algorith programming contest for college 
+    stdents.Team of three,representing their university,
+    work to slove the most real-world problems,fostering
+    collabration ,creativity, innovation ,and the ability 
+    to perform under pressure .Through traning and 
+    competiotion ,teams challengs each others to raise
+    the bar on the possible .quite simply,it is the oldest ,
+    largest ,and most prestigious programming contest in the world """,
+    """PTA addresses issues that are important to parents and 
+    public school administratos. We fight for fouonding ,
+    qualitie teachers,and capabilities  for school to thrive.
+    If your school or district does not have a PTA.now is 
+    the time .Membership is open to everyone .Your PTA is 
+    autonomus but supported by a nation structure .it 
+    sets its own dues   """,
+    """The annual college day celebration is  organised by 
+    the management .student with great intres and 
+    enthusiasam .The day is celebrated during the firsthalf
+    of the acadamic session. It provides an opportunity to 
+    assess the acheivements of the college.The students 
+    are actively associated in on the segment of the 
+     programme. Rather , the manage all the ativities by 
+     themselves .As this day falls right next to the sports day 
+     celebration,the enegry and the spirit of the studnent 
+     always stays hi ,""",
+    """The are many elected roles availabale, with some 
+    requiring greater involvement than other.While
+    societies and sports clubs host voluntary elected 
+    positions to run alongside your stidies , the students'
+    union offers numerous paid .full-time sabbatical roles 
+    -such as president ,vice president,education officer 
+    and welfare office -that can be held for one or two 
+    years   """,
+    """The college gives equal importance to  academic 
+    and non acadamic area. the college Arts festival is 
+    conductud each year wit unique names .in order to 
+    ensure  the maximum participation from every student 
+    and to include in them a spirit of competetion ,all the 
+    students are grouped into four houses.Each group is 
+    headed by respective teachers."""
+  ];
+
   String fname = " ";
   String lname = " ";
   String mname = " ";
@@ -707,259 +758,337 @@ class _MyProfilePageState extends State<MyProfilePage> {
               ],
             ),
             const SizedBox(height: 20),
-            Container(
-              width: double.infinity,
-              padding: const EdgeInsets.all(20),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(16),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey.withOpacity(0.5),
-                    spreadRadius: 5,
-                    blurRadius: 7,
-                    offset: const Offset(0, 3),
-                  ),
-                ],
+            Padding(
+              padding: const EdgeInsets.only(right: 15, left: 15, bottom: 30),
+              child: Container(
+                width: double.infinity,
+                height: 600,
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(30)),
+                child: Column(
+                  children: [
+                    Align(
+                      alignment: Alignment.topCenter,
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 10, left: 20),
+                        child: Row(
+                          children: [
+                            Icon(
+                              Icons.notifications,
+                              size: 32,
+                              color: const Color.fromARGB(255, 246, 193, 2),
+                            ),
+                            Text("Notice",
+                                style: TextStyle(
+                                    fontSize: 22, fontWeight: FontWeight.w500))
+                          ],
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding:
+                          const EdgeInsets.only(top: 20, right: 20, left: 20),
+                      child: ListView.separated(
+                          physics: NeverScrollableScrollPhysics(),
+                          shrinkWrap: true,
+                          itemBuilder: (context, index) => GestureDetector(
+                                onTap: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => ProgramminContest(
+                                          titlename: noticeTitle[index],
+                                          noticetitleing: noticeDetails[index],
+                                        ),
+                                      ));
+                                  print(
+                                      "nooooooooottttttiiiicccceeeeeeepppppaaaggggggee$noticeTitle");
+                                },
+                                child: ListTile(
+                                  title: Text(
+                                    noticeTitle[index],
+                                    style: TextStyle(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  subtitle: Text(
+                                      overflow: TextOverflow.ellipsis,
+                                      noticeDetails[index]),
+                                  trailing: IconButton(
+                                      onPressed: () {
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) =>
+                                                  ProgramminContest(),
+                                            ));
+                                      },
+                                      icon:
+                                          Icon(Icons.arrow_forward_ios_sharp)),
+                                ),
+                              ),
+                          separatorBuilder: (context, index) => Divider(
+                              color: Color.fromARGB(255, 173, 172, 172)),
+                          itemCount: noticeTitle.length),
+                    ),
+                  ],
+                ),
               ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Icon(
-                        Icons.notifications,
-                        color: Colors.yellow,
-                        size: 20,
-                      ),
-                      Text(
-                        'Notice',
-                        style: TextStyle(
-                          fontSize: 20,
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 10),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text(
-                        'Programming Contest',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      const SizedBox(height: 5),
-                      const Text(
-                        '''The international collegiate Programming contest 
-is an algorith programming contest for college 
-stdents.Team of three,representing their university,
-work to slove the most real-world problems,fostering
-collabration ,creativity, innovation ,and the ability 
-to perform under pressure .Through traning and 
-competiotion ,teams challengs each others to raise
-the bar on the possible .quite simply,it is the oldest ,
-largest ,and most prestigious programming contest in the world """,
-    """PTA addresses issues that are important to parents and 
-    public school administratos. We fight for fouonding ,
-    qualitie teachers,and capabilities  for school to thrive.
-    If your school or district does not have a PTA.now is 
-    the time .Membership is open to everyone .Your PTA is 
-    autonomus but supported by a nation structure .it 
-    sets its own dues''',
-                        maxLines: 2,
-                        overflow: TextOverflow.clip,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          TextButton(
-                            onPressed: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          ProgramminContest()));
-                            },
-                            child: const Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Icon(
-                                  Icons.arrow_forward_ios,
-                                  size: 16,
-                                  color: Colors.grey,
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                  const Divider(
-                    thickness: 1,
-                    color: Colors.grey,
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text(
-                        'Parents Meeting',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      const SizedBox(height: 5),
-                      const Text(
-                        '''PTA addresses issues that are important to parents 
-and public school administratos. We fight for fouonding ,
-qualitie teachers,and capabilities  for school to thrive.
-If your school or district does not have a PTA.now is 
-the time .Membership is open to everyone .Your PTA is 
-autonomus but supported by a nation structure .it 
-sets its own dues''',
-                        maxLines: 2,
-                        overflow: TextOverflow.clip,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          TextButton(
-                            onPressed: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          ProgramminContest()));
-                            },
-                            child: const Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Icon(
-                                  Icons.arrow_forward_ios,
-                                  size: 16,
-                                  color: Colors.grey,
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                  const Divider(
-                    thickness: 1,
-                    color: Colors.grey,
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text(
-                        'College Day',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      const SizedBox(height: 5),
-                      const Text(
-                        '''
-The annual college day celebration is  organised by 
-the management .student with great intres and 
-enthusiasam .The day is celebrated during the firsthalf
-of the acadamic session. It provides an opportunity to 
-assess the acheivements of the college.The students 
-are actively associated in on the segment of the 
-programme. Rather , the manage all the ativities by 
-themselves .As this day falls right next to the sports day 
-celebration,the enegry and the spirit of the studnent 
-always stays hi''',
-                        maxLines: 2,
-                        overflow: TextOverflow.clip,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          TextButton(
-                            onPressed: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          ProgramminContest()));
-                            },
-                            child: const Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Icon(
-                                  Icons.arrow_forward_ios,
-                                  size: 16,
-                                  color: Colors.grey,
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                  const Divider(
-                    thickness: 1,
-                    color: Colors.grey,
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text(
-                        'College Election',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      const SizedBox(height: 5),
-                      const Text(
-                        '''
-The are many elected roles availabale, with some 
-requiring greater involvement than other.While
-societies and sports clubs host voluntary elected 
-positions to run alongside your stidies , the students'
-union offers numerous paid .full-time sabbatical roles 
-such as president ,vice president,education officer 
-and welfare office -that can be held for one or two 
-years ''',
-                        maxLines: 2,
-                        overflow: TextOverflow.clip,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          TextButton(
-                            onPressed: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          ProgramminContest()));
-                            },
-                            child: const Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Icon(
-                                  Icons.arrow_forward_ios,
-                                  size: 16,
-                                  color: Colors.grey,
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  )
-                ],
-              ),
-            ),
+            )
+//             Container(
+//               width: double.infinity,
+//               padding: const EdgeInsets.all(20),
+//               decoration: BoxDecoration(
+//                 color: Colors.white,
+//                 borderRadius: BorderRadius.circular(16),
+//                 boxShadow: [
+//                   BoxShadow(
+//                     color: Colors.grey.withOpacity(0.5),
+//                     spreadRadius: 5,
+//                     blurRadius: 7,
+//                     offset: const Offset(0, 3),
+//                   ),
+//                 ],
+//               ),
+//               child: Column(
+//                 crossAxisAlignment: CrossAxisAlignment.start,
+//                 children: [
+//                   const Row(
+//                     crossAxisAlignment: CrossAxisAlignment.start,
+//                     children: [
+//                       Icon(
+//                         Icons.notifications,
+//                         color: Colors.yellow,
+//                         size: 20,
+//                       ),
+//                       Text(
+//                         'Notice',
+//                         style: TextStyle(
+//                           fontSize: 20,
+//                         ),
+//                       ),
+//                     ],
+//                   ),
+//                   const SizedBox(height: 10),
+//                   Column(
+//                     crossAxisAlignment: CrossAxisAlignment.start,
+//                     children: [
+//                       const Text(
+//                         'Programming Contest',
+//                         style: TextStyle(
+//                           fontWeight: FontWeight.bold,
+//                         ),
+//                       ),
+//                       const SizedBox(height: 5),
+//                       const Text(
+//                         '''The international collegiate Programming contest 
+// is an algorith programming contest for college 
+// stdents.Team of three,representing their university,
+// work to slove the most real-world problems,fostering
+// collabration ,creativity, innovation ,and the ability 
+// to perform under pressure .Through traning and 
+// competiotion ,teams challengs each others to raise
+// the bar on the possible .quite simply,it is the oldest ,
+// largest ,and most prestigious programming contest in the world """,
+//     """PTA addresses issues that are important to parents and 
+//     public school administratos. We fight for fouonding ,
+//     qualitie teachers,and capabilities  for school to thrive.
+//     If your school or district does not have a PTA.now is 
+//     the time .Membership is open to everyone .Your PTA is 
+//     autonomus but supported by a nation structure .it 
+//     sets its own dues''',
+//                         maxLines: 2,
+//                         overflow: TextOverflow.clip,
+//                       ),
+//                       Row(
+//                         mainAxisAlignment: MainAxisAlignment.end,
+//                         children: [
+//                           TextButton(
+//                             onPressed: () {
+//                               Navigator.push(
+//                                   context,
+//                                   MaterialPageRoute(
+//                                       builder: (context) =>
+//                                           ProgramminContest()));
+//                             },
+//                             child: const Row(
+//                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//                               children: [
+//                                 Icon(
+//                                   Icons.arrow_forward_ios,
+//                                   size: 16,
+//                                   color: Colors.grey,
+//                                 ),
+//                               ],
+//                             ),
+//                           ),
+//                         ],
+//                       ),
+//                     ],
+//                   ),
+//                   const Divider(
+//                     thickness: 1,
+//                     color: Colors.grey,
+//                   ),
+//                   Column(
+//                     crossAxisAlignment: CrossAxisAlignment.start,
+//                     children: [
+//                       const Text(
+//                         'Parents Meeting',
+//                         style: TextStyle(
+//                           fontWeight: FontWeight.bold,
+//                         ),
+//                       ),
+//                       const SizedBox(height: 5),
+//                       const Text(
+//                         '''PTA addresses issues that are important to parents 
+// and public school administratos. We fight for fouonding ,
+// qualitie teachers,and capabilities  for school to thrive.
+// If your school or district does not have a PTA.now is 
+// the time .Membership is open to everyone .Your PTA is 
+// autonomus but supported by a nation structure .it 
+// sets its own dues''',
+//                         maxLines: 2,
+//                         overflow: TextOverflow.clip,
+//                       ),
+//                       Row(
+//                         mainAxisAlignment: MainAxisAlignment.end,
+//                         children: [
+//                           TextButton(
+//                             onPressed: () {
+//                               Navigator.push(
+//                                   context,
+//                                   MaterialPageRoute(
+//                                       builder: (context) =>
+//                                           ProgramminContest()));
+//                             },
+//                             child: const Row(
+//                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//                               children: [
+//                                 Icon(
+//                                   Icons.arrow_forward_ios,
+//                                   size: 16,
+//                                   color: Colors.grey,
+//                                 ),
+//                               ],
+//                             ),
+//                           ),
+//                         ],
+//                       ),
+//                     ],
+//                   ),
+//                   const Divider(
+//                     thickness: 1,
+//                     color: Colors.grey,
+//                   ),
+//                   Column(
+//                     crossAxisAlignment: CrossAxisAlignment.start,
+//                     children: [
+//                       const Text(
+//                         'College Day',
+//                         style: TextStyle(
+//                           fontWeight: FontWeight.bold,
+//                         ),
+//                       ),
+//                       const SizedBox(height: 5),
+//                       const Text(
+//                         '''
+// The annual college day celebration is  organised by 
+// the management .student with great intres and 
+// enthusiasam .The day is celebrated during the firsthalf
+// of the acadamic session. It provides an opportunity to 
+// assess the acheivements of the college.The students 
+// are actively associated in on the segment of the 
+// programme. Rather , the manage all the ativities by 
+// themselves .As this day falls right next to the sports day 
+// celebration,the enegry and the spirit of the studnent 
+// always stays hi''',
+//                         maxLines: 2,
+//                         overflow: TextOverflow.clip,
+//                       ),
+//                       Row(
+//                         mainAxisAlignment: MainAxisAlignment.end,
+//                         children: [
+//                           TextButton(
+//                             onPressed: () {
+//                               Navigator.push(
+//                                   context,
+//                                   MaterialPageRoute(
+//                                       builder: (context) =>
+//                                           ProgramminContest()));
+//                             },
+//                             child: const Row(
+//                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//                               children: [
+//                                 Icon(
+//                                   Icons.arrow_forward_ios,
+//                                   size: 16,
+//                                   color: Colors.grey,
+//                                 ),
+//                               ],
+//                             ),
+//                           ),
+//                         ],
+//                       ),
+//                     ],
+//                   ),
+//                   const Divider(
+//                     thickness: 1,
+//                     color: Colors.grey,
+//                   ),
+//                   Column(
+//                     crossAxisAlignment: CrossAxisAlignment.start,
+//                     children: [
+//                       const Text(
+//                         'College Election',
+//                         style: TextStyle(
+//                           fontWeight: FontWeight.bold,
+//                         ),
+//                       ),
+//                       const SizedBox(height: 5),
+//                       const Text(
+//                         '''
+// The are many elected roles availabale, with some 
+// requiring greater involvement than other.While
+// societies and sports clubs host voluntary elected 
+// positions to run alongside your stidies , the students'
+// union offers numerous paid .full-time sabbatical roles 
+// such as president ,vice president,education officer 
+// and welfare office -that can be held for one or two 
+// years ''',
+//                         maxLines: 2,
+//                         overflow: TextOverflow.clip,
+//                       ),
+//                       Row(
+//                         mainAxisAlignment: MainAxisAlignment.end,
+//                         children: [
+//                           TextButton(
+//                             onPressed: () {
+//                               Navigator.push(
+//                                   context,
+//                                   MaterialPageRoute(
+//                                       builder: (context) =>
+//                                           ProgramminContest()));
+//                             },
+//                             child: const Row(
+//                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//                               children: [
+//                                 Icon(
+//                                   Icons.arrow_forward_ios,
+//                                   size: 16,
+//                                   color: Colors.grey,
+//                                 ),
+//                               ],
+//                             ),
+//                           ),
+//                         ],
+//                       ),
+//                     ],
+//                   )
+//                 ],
+//               ),
+//             ),
           ],
         ),
       ),
