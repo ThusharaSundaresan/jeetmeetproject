@@ -60,6 +60,7 @@ class _MyProfilePageState extends State<MyProfilePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        elevation: 0.0,
         // automaticallyImplyLeading: false,
         centerTitle: true,
         title: const Text(
@@ -88,7 +89,7 @@ class _MyProfilePageState extends State<MyProfilePage> {
             },
           ),
         ],
-        elevation: 0,
+        
       ),
       drawer: Drawer(
         backgroundColor: Colors.white,
